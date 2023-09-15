@@ -40,7 +40,7 @@ def mouse_tikla():
 arayuz = tk.Tk()
 arayuz.title("Mouse Tıklama Programı - Berat Aras")
 arayuz.geometry("550x400")
-arayuz.configure(bg="#0F3D35")
+#arayuz.configure(bg="#0F3D35")
 
 # Burada kodda girilecek saat, saniye, salise değişkenleri kullanıcıdan alınıyor.
 saat_label = tk.Label(arayuz, text="Saat:")
