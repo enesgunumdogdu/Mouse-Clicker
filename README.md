@@ -1,2 +1,3 @@
-# Mouse-Click
-### Simple python program that provides you to click your mouse at the exact time that you specified by gui ###
+# Mouse-Clicker
+## Simple python program that provides you to click your mouse at the exact time that you specified by gui ###
+
