@@ -15,17 +15,13 @@ def mouse_tikla():
         # Girilen zamana ölçekleyebilmek için şimdiki zamanı alıyorum.
         simdiki_zaman = time.localtime()
         
-        # Belirtilen saate kadar bekleyin
-        while time.localtime().tm_hour < saat:
-            pass
+        hedef_zaman_saniye = (hedef_zaman[0] * 3600 + hedef_zaman[1] * 60 + hedef_zaman[2]) + (hedef_zaman[3] / 100)
+        simdiki_zaman_saniye = (simdiki_zaman.tm_hour * 3600 + simdiki_zaman.tm_min * 60 + simdiki_zaman.tm_sec) + (time.time() * 100 % 100) / 100
         
-        # Belirtilen dakikaya kadar bekleyin
-        while time.localtime().tm_min < dakika:
-            pass
-        
-        # Belirtilen saniyeye kadar bekleyin
-        while time.localtime().tm_sec < saniye:
-            pass
+        # Belirtilen zamana kadar bekleyin
+        while simdiki_zaman_saniye < hedef_zaman_saniye:
+            simdiki_zaman = time.localtime()
+            simdiki_zaman_saniye = (simdiki_zaman.tm_hour * 3600 + simdiki_zaman.tm_min * 60 + simdiki_zaman.tm_sec) + (time.time() * 100 % 100) / 100
         
         # Mouse'un bulunduğu yere tıklayın
         mouse_x, mouse_y = pyautogui.position()
@@ -34,15 +30,14 @@ def mouse_tikla():
         sonuc_label.config(text="Mouse başarıyla tıklandı")
     
     except ValueError:
-        sonuc_label.config(text="Girdiğiniz zaman aralığı geçersiz.Lütfen geçerli bir saat, dakika, saniye ve salise girin.")
+        sonuc_label.config(text="Girdiğiniz zaman aralığı geçersiz. Lütfen geçerli bir saat, dakika, saniye ve salise girin.")
 
 # Burası kodumuzun grafik arayüz kısmını oluşturuyor.
 arayuz = tk.Tk()
 arayuz.title("Mouse Tıklama Programı")
 arayuz.geometry("550x400")
-#arayuz.configure(bg="#0F3D35")
 
-# Burada kodda girilecek saat, saniye, salise değişkenleri kullanıcıdan alınıyor.
+# Burada kodda girilecek saat, dakika, saniye ve salise değişkenleri kullanıcıdan alınıyor.
 saat_label = tk.Label(arayuz, text="Saat:")
 saat_label.pack()
 saat_entry = tk.Entry(arayuz)
@@ -67,7 +62,7 @@ salise_entry.pack()
 tiklama_button = tk.Button(arayuz, text="Tıklama Yap", command=mouse_tikla)
 tiklama_button.pack()
 
-# Tıklama yapıldı veya yapılmadı sonucu ise burada görüntülenecek.
+# Tıklama yapıldı veya yapılmadı sonucu burada görüntülenecek.
 sonuc_label = tk.Label(arayuz, text="")
 sonuc_label.pack()
 
